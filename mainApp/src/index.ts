@@ -1,14 +1,14 @@
 import express, { Request, Response } from 'express';
+import { PrismaClient } from '@prisma/client'
 import axios from 'axios';
 import 'dotenv/config';
 const cors = require('cors')
 import { Helper } from './helpers';
 
 const app = express();
-
+const prisma = new PrismaClient();
 const helper = new Helper();
 
-const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -21,6 +21,8 @@ app.get('/all_patients_data', async(req: Request, res: Response)=>{
     }
 });
 
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
     console.log(`Main app is running on port ${PORT}`);    
 })
