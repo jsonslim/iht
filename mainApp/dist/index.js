@@ -40,78 +40,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
+var axios_1 = __importDefault(require("axios"));
+require("dotenv/config");
 var cors = require('cors');
 var helpers_1 = require("./helpers");
 var app = (0, express_1.default)();
 var helper = new helpers_1.Helper();
 var PORT = process.env.PORT || 3000;
-var MICROSERVICE_URL = 'http://localhost:3001/fetch-data';
 app.use(cors());
-app.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        try {
-            res.send('aliv!');
-        }
-        catch (error) {
-            res.status(500).send("some srv error");
-        }
-        return [2 /*return*/];
-    });
-}); });
 app.get('/all_patients_data', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var data;
+    var response, error_1;
     return __generator(this, function (_a) {
-        try {
-            data = [
-                {
-                    "client_id": "67dcf9bc",
-                    "date_testing": "2018-08-16",
-                    "date_birthdate": "1950-01-01",
-                    "gender": 1,
-                    "ethnicity": 5,
-                    "creatine": 1.04,
-                    "chloride": 83.74,
-                    "fasting_glucose": 137.52,
-                    "potassium": 7.18,
-                    "sodium": 96.85,
-                    "total_calcium": 9.33,
-                    "total_protein": 14.09,
-                    "creatine_unit": "mgdl",
-                    "chloride_unit": "mmoll",
-                    "fasting_glucose_unit": "mgdl",
-                    "potassium_unit": "mmoll",
-                    "sodium_unit": "ul",
-                    "total_calcium_unit": "mgdl",
-                    "total_protein_unit": "gdl"
-                },
-                {
-                    "client_id": "67dcf9bc",
-                    "date_testing": "2020-07-23",
-                    "date_birthdate": "1950-01-01",
-                    "gender": 1,
-                    "ethnicity": 5,
-                    "creatine": 0.5,
-                    "chloride": 110.58,
-                    "fasting_glucose": 122.01,
-                    "potassium": 4.68,
-                    "sodium": 134.36,
-                    "total_calcium": 8.95,
-                    "total_protein": 14.84,
-                    "creatine_unit": "mgdl",
-                    "chloride_unit": "mmoll",
-                    "fasting_glucose_unit": "mgdl",
-                    "potassium_unit": "mmoll",
-                    "sodium_unit": "ul",
-                    "total_calcium_unit": "mgdl",
-                    "total_protein_unit": "gdl"
-                }
-            ];
-            res.send(data);
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, axios_1.default.get(process.env.MICROSERVICE_URL)];
+            case 1:
+                response = _a.sent();
+                res.json(response.data);
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                res.status(500).send("some srv error");
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
-        catch (error) {
-            res.status(500).send("some srv error");
-        }
-        return [2 /*return*/];
     });
 }); });
 app.listen(PORT, function () {

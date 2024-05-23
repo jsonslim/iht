@@ -2,54 +2,52 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        .container {
-            border: 2px solid gray;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px;
-            width: fit-content;
-            border-radius: 4px;
-        }
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		.container {
+			border: 2px solid gray;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 12px;
+			width: fit-content;
+			border-radius: 4px;
+		}
 
-        .res {
-            height: 500px;
-            width: 350px;
-            border: 2px solid gray;
-            border-radius: 4px;
-            padding: 12px;
-            font-size: large;
-            overflow: auto;
-        }
-    </style>
-    <title>PATIENTS DATA</title>
+		.res {
+			height: 500px;
+			width: 350px;
+			border: 2px solid gray;
+			border-radius: 4px;
+			padding: 12px;
+			font-size: large;
+			overflow: auto;
+		}
+	</style>
+	<title>PATIENTS DATA</title>
 </head>
 
 <body>
-    <div class="container">
-        <button id="showPatients" style="font-size: large;">Show Patients</button>
-        <pre id="dataPre" class="res">Press the button to get data</pre>
-    </div>
-    <script>
-        document.getElementById('showPatients').addEventListener('click', async () => {
-            const response = await fetch('http://localhost:3000/all_patients_data',
-                {
-                    method: "GET",
-
-                    
-                });
+	<div class="container">
+		<button id="showPatients" style="font-size: large;">Show Patients</button>
+		<pre id="dataPre" class="res">Press the button to get data</pre>
+	</div>
+	<script>
+		document.getElementById('showPatients').addEventListener('click', async () => {
+			const response = await fetch('http://localhost:3000/all_patients_data',
+				{
+					method: "GET",
+				});
 
 
-            const data = await response.json();
+			const data = await response.json();
 
-            const preTag = document.getElementById('dataPre')
-            preTag.textContent = JSON.stringify(data, null, 2);
-        });
-    </script>
+			const preTag = document.getElementById('dataPre')
+			preTag.textContent = JSON.stringify(data, null, 2);
+		});
+	</script>
 </body>
 
 </html>
