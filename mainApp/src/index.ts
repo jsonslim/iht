@@ -14,6 +14,8 @@ app.use(cors());
 
 app.get('/all_patients_data', async(req: Request, res: Response)=>{
     try {       
+        console.log('--> request: ', req);
+        
         const response = await axios.get(process.env.MICROSERVICE_URL);
         res.json(response.data);
     } catch (error) {

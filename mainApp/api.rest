@@ -1,2 +1,4 @@
 ###
 https://mockapi-furw4tenlq-ez.a.run.app/data
+###
+http://localhost:3000/all_patients_data
