@@ -8,11 +8,12 @@ export class Dataservice {
     }
 
     static transformDates(data) {
-        return data.map(item => ({
+         const res = data.map(item => ({
             ...item,
             date_testing: new Date(item.date_testing),
             date_birthdate: new Date(item.date_birthdate),
         }));
+        return res;
     }
 
 }

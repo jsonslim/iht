@@ -31,18 +31,13 @@ app.get('/all_patients_data', async (req: Request, res: Response) => {
   try {
     const userCount = await Dbservice.getUniqueClientIdsCount();
     if(userCount < 10){
-      Dbservice.fillDb(10);
-      res.json(Dbservice.getAllPatients());
+      await Dbservice.fillDb(10);
+      res.json(await Dbservice.getAllPatients());
     } else {
-      res.json(Dbservice.getAllPatients());
-    } 
-    const patientData = await Dataservice.getApiData();
-    const transformedData = Dataservice.transformDates(patientData);
-    const tmp = await prisma.patient.createMany({ data: transformedData });
-
-    res.json(tmp);
+      res.json(await Dbservice.getAllPatients());
+    }     
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send(error.message);
   } finally {
     await prisma.$disconnect();
   }

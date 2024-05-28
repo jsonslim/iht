@@ -16,9 +16,16 @@
 			border-radius: 4px;
 		}
 
+		.containerGlobal{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 80px;
+		}
+
 		.res {
 			height: 500px;
-			width: 350px;
+			width: 450px;
 			border: 2px solid gray;
 			border-radius: 4px;
 			padding: 12px;
@@ -30,9 +37,12 @@
 </head>
 
 <body>
-	<div class="container">
-		<button id="showPatients" style="font-size: large;">Show Patients</button>
-		<pre id="dataPre" class="res">Press the button to get data</pre>
+	<div class="containerGlobal">
+		<div class="container">
+			<button id="showPatients" style="font-size: large;">Show Patients</button>
+			<div id="records"></div>
+			<pre id="dataPre" class="res">Press the button to get data</pre>
+		</div>
 	</div>
 	<script>
 		document.getElementById('showPatients').addEventListener('click', async () => {
@@ -46,6 +56,10 @@
 
 			const preTag = document.getElementById('dataPre')
 			preTag.textContent = JSON.stringify(data, null, 2);
+
+			let records = document.getElementById('records');
+			records.textContent = `Records found: ${data.length}`;
+
 		});
 	</script>
 </body>
