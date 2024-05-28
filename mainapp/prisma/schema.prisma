@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -14,10 +15,10 @@ datasource db {
 }
 
 model Patient {
-  id                   Int      @id @default(autoincrement())
+  id                   String      @id @default(uuid())
   client_id            String
-  date_testing         DateTime
-  date_birthdate       DateTime
+  date_testing         DateTime    @db.Date
+  date_birthdate       DateTime     @db.Date
   gender               Int
   ethnicity            Int
   creatine             Float
@@ -35,5 +36,10 @@ model Patient {
   total_calcium_unit   String
   total_protein_unit   String
 
-  @@index([client_id])
+}
+
+model test {
+  id                   String      @id @default(uuid())
+  name String
+  date_testing         DateTime    @db.Date
 }

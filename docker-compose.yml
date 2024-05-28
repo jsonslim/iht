@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  mainapp:
+    build: 
+      context: ./mainapp
+      dockerfile: Dockerfile
+    container_name: mainapp_app
+    working_dir: /usr/src/app
+    volumes:
+      - ./mainapp:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: npm start
+
+  microservice:
+    build:
+      context: ./microservice
+      dockerfile: Dockerfile
+    container_name: microservice_app
+    working_dir: /usr/src/app
+    volumes:
+      - ./microservice:/usr/src/app
+    ports:
+      - "3001:3000"
+    command: npm start

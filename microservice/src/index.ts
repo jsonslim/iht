@@ -11,7 +11,7 @@ app.use(cors());
 
 app.get('/fetch-data', async(req: Request, res: Response)=>{
     try {
-        const response = await axios.get(process.env.API_URL);
+        const response = await axios.get(process.env.API_URL);        
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching data:', error);
