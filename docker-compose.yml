@@ -5,12 +5,16 @@ services:
     build: 
       context: ./mainapp
       dockerfile: Dockerfile
-    container_name: mainapp_app
+    container_name: main_app
     working_dir: /usr/src/app
     volumes:
       - ./mainapp:/usr/src/app
     ports:
       - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://usr1:usr1@db:5432/users
+    depends_on:
+      - db
     command: npm start
 
   microservice:
@@ -22,5 +26,24 @@ services:
     volumes:
       - ./microservice:/usr/src/app
     ports:
-      - "3001:3000"
+      - "3001:3001"
+    environment:
+      DATABASE_URL: postgres://usr1:usr1@db:5432/users
+    depends_on:
+      - db
     command: npm start
+
+  db:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: usr1
+      POSTGRES_PASSWORD: usr1
+      POSTGRES_DB: users
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
