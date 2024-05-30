@@ -10,13 +10,14 @@ COPY . .
 
 COPY prisma ./prisma
 
+ENV DATABASE_URL=postgres://usr1:usr1@postgres:5432/users
+
 # Run Prisma migrations
-RUN npx prisma migrate deploy
+# RUN npx prisma migrate deploy
 
 # Generate Prisma client
-RUN npx prisma generate
+# RUN npx prisma generate
 
-#bundle app source
 # COPY . .
 
 RUN npm run build
