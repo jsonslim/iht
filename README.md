@@ -8,6 +8,9 @@ The app consists of three parts: `MainApp` `Microservice` and `Postgres` instanc
 
 The `MainApp` serves the frontend and DB, while the `Microservice` handles API requests.
 
+![Screenshot from 2024-05-30 16-36-20](https://github.com/jsonslim/iht/assets/20793480/34d10556-78fd-41a4-bc51-9e3b655d89b8)
+
+
 ## Prerequisites
 
 `Ubuntu` with `Docker` installed.
