@@ -14,12 +14,9 @@ The `MainApp` serves the frontend and DB, while the `Microservice` handles API r
 
 ## Setup and run
 The easiest way is running the command from the root folder:
-
-   
-    ```
+    
     cd ./deploy docker-compose up --build
-    ```
-
+    
 
 The command pulls the three containers from the docker hub and runs it. 
 
